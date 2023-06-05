@@ -17,7 +17,58 @@ WA.onInit().then(() => {
         currentPopup = WA.ui.openPopup("clockPopup", "It's " + time, []);
     })
 
-    WA.room.area.onLeave('clock').subscribe(closePopup)
+    WA.room.area.onLeave('clock').subscribe(closePopup);
+
+    WA.room.area.onEnter('break-room').subscribe(() => {
+        WA.player.setOutlineColor(0, 255, 0);
+        console.log('entered break room');
+    })
+
+    //RTR piecake mirage
+    WA.state.onVariableChange('piecake').subscribe((value) => {
+
+        let temp = typeof value === 'string' ? value : null;
+
+        WA.room.setTiles([
+            {x: 15, y: 8, tile: temp, layer: 'rtr_interactables'}
+        ]);
+
+        console.log('variable changed');
+    });
+
+    //RTR lights out?
+    WA.state.onVariableChange('lights-1').subscribe((value) => {
+
+        let temp = typeof value === 'string' ? value : null;
+
+        WA.room.setTiles([
+            {x: 3, y: 16, tile: temp, layer: 'rtr_interactables'}
+        ]);
+
+        console.log('variable changed for lights-1');
+    });
+
+    WA.state.onVariableChange('lights-2').subscribe((value) => {
+
+        let temp = typeof value === 'string' ? value : null;
+
+        WA.room.setTiles([
+            {x: 6, y: 16, tile: temp, layer: 'rtr_interactables'}
+        ]);
+
+        console.log('variable changed for lights-2');
+    });
+
+    WA.state.onVariableChange('lights-3').subscribe((value) => {
+
+        let temp = typeof value === 'string' ? value : null;
+
+        WA.room.setTiles([
+            {x: 9, y: 16, tile: temp, layer: 'rtr_interactables'}
+        ]);
+
+        console.log('variable changed for lights-3');
+    });
 
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
