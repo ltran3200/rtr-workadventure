@@ -70,6 +70,16 @@ WA.onInit().then(() => {
         console.log('variable changed for lights-3');
     });
 
+    //Polling
+    WA.room.area.onEnter('rtr-var-test_1').subscribe(() => {
+        (WA.state.rtr_var_1 as number)++;
+    });
+
+    WA.room.area.onEnter('rtr-var-test_2').subscribe(() => {
+        (WA.state.rtr_var_2 as number)++;
+        console.log(WA.state.rtr_var_2)
+    })
+
     // The line below bootstraps the Scripting API Extra library that adds a number of advanced properties/features to WorkAdventure
     bootstrapExtra().then(() => {
         console.log('Scripting API Extra ready');

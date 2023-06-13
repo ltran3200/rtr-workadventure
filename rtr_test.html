@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing iframes</title>
+    <!-- <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon"> -->
+  </head>
+  <body>
+    <main>
+        <h1>rtr test</h1>
+        <div id="rtrExample_1"></div>
+        <div id="rtrExample_2"></div>
+    </main>
+	<script src="https://play.workadventu.re/iframe_api.js"></script>
+  <script>
+    WA.onInit().then(() => {
+      update(WA.state.rtr_var_1, WA.state.rtr_var_2);
+    })
+
+    WA.state.onVariableChange('rtr_var_1').subscribe((value) => {
+      update(value, WA.state.rtr_var_2);
+    });
+
+    WA.state.onVariableChange('rtr_var_2').subscribe((value) => {
+      update(WA.state.rtr_var_1, value);
+    });
+
+    function update(var_1 = 0, var_2 = 0) {
+      document.getElementById('rtrExample_1').innerHTML = var_1;
+      document.getElementById('rtrExample_2').innerHTML = var_2;
+    }
+    
+  </script>
+  </body>
+</html>
